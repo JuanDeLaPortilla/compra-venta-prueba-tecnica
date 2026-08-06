@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace CompraVenta.Domain.Common;
+﻿namespace CompraVenta.Domain.Common;
 
 public class Result
 {

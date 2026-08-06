@@ -12,6 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CompraVenta.Auth.Core\CompraVenta.Auth.Core.csproj" />
       <ProjectReference Include="..\CompraVenta.Auth.Infrastructure\CompraVenta.Auth.Infrastructure.csproj" />
       <ProjectReference Include="..\CompraVenta.Security\CompraVenta.Security.csproj" />
     </ItemGroup>

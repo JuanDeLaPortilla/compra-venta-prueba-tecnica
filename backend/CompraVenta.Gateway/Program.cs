@@ -25,6 +25,21 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
+var allowedOrigins = builder.Configuration
+    .GetSection(CorsConstants.AllowedOriginsSectionKey)
+    .Get<string[]>() ?? [];
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(CorsConstants.FrontendPolicy, policy =>
+    {
+        policy
+            .WithOrigins(allowedOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services
     .AddReverseProxy()
     .LoadFromConfig(
@@ -61,6 +76,10 @@ app.UseSwaggerUI(options =>
 });
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors(CorsConstants.FrontendPolicy);
 
 app.UseCustomMiddleware();
 

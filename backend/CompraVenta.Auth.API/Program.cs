@@ -26,6 +26,8 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
+builder.Services.AddApiRateLimiter();
+
 var app = builder.Build();
 
 
@@ -49,9 +51,15 @@ app.UseSwaggerUI(options =>
 
 app.UseHttpsRedirection();
 
+app.UseHsts();
+
 app.UseRouting();
 
+app.UseSecurityHeaders();
+
 app.UseGatewayValidation();
+
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();

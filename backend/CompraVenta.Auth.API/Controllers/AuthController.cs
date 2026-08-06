@@ -2,8 +2,8 @@
 using CompraVenta.Auth.Infrastructure.Repositories;
 using CompraVenta.Auth.Infrastructure.Security;
 using Microsoft.AspNetCore.Authorization;
-using static CompraVenta.Domain.Common.Result;
 using Microsoft.AspNetCore.Mvc;
+using static CompraVenta.Domain.Common.Result;
 
 namespace CompraVenta.Auth.API.Controllers;
 

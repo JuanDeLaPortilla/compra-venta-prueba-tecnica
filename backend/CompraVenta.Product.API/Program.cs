@@ -19,12 +19,39 @@ builder.Services.AddSwaggerGen(options =>
         "v1",
         new OpenApiInfo
         {
-            Title = "Products API",
+            Title = "Commerce API",
             Version = "v1",
         });
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Ingrese el token JWT."
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            []
+        }
+    });
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddApiRateLimiter();
 
 var app = builder.Build();
 
@@ -46,12 +73,17 @@ app.UseSwaggerUI(options =>
         "Commerce API v1");
 });
 
-
 app.UseHttpsRedirection();
+
+app.UseHsts();
 
 app.UseRouting();
 
+app.UseSecurityHeaders();
+
 app.UseGatewayValidation();
+
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CompraVenta.Auth.Core\CompraVenta.Auth.Core.csproj" />
       <ProjectReference Include="..\CompraVenta.Persistence\CompraVenta.Persistence.csproj" />
     </ItemGroup>
 
