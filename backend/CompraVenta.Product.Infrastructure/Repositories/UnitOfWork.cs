@@ -7,7 +7,9 @@ public class UnitOfWork(CompraVentaDbContext db) : IUnitOfWork
 {
     public IProductRepository Products { get; } = new ProductRepository(db);
     public IPurchaseRepository Purchases { get; } = new PurchaseRepository(db);
-    
+    public IMovementRepository Movements { get; } = new MovementRepository(db);
+    public ISaleRepository Sales { get; } = new SalesRepository(db);
+
     public void Dispose() => db.Dispose();
 
     public async Task ReloadAsync(object entity) => await db.Entry(entity).ReloadAsync();

@@ -35,4 +35,19 @@ public class ProductRepository(CompraVentaDbContext db) : Repository<Product>(db
                         : -x.Quantity)
             });
     }
+    public async Task<Dictionary<int, int>> GetStockByProductsAsync(IEnumerable<int> productIds)
+    {
+        return await db.MovementDetails
+            .Where(x => productIds.Contains(x.ProductId))
+            .GroupBy(x => x.ProductId)
+            .Select(x => new
+            {
+                ProductId = x.Key,
+                Stock = x.Sum(y =>
+                    y.Movement!.MovementTypeEnum == MovementType.InBound
+                        ? y.Quantity
+                        : -y.Quantity)
+            })
+            .ToDictionaryAsync(x => x.ProductId, x => x.Stock);
+    }
 }

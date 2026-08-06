@@ -6,4 +6,5 @@ namespace CompraVenta.Commerce.Core.Interfaces;
 public interface IProductRepository : IRepository<Product>
 {
     Task<List<ProductResponse>> ListProductsAsync();
+    Task<Dictionary<int, int>> GetStockByProductsAsync(IEnumerable<int> productIds);
 }

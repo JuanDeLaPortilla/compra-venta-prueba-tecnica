@@ -12,5 +12,9 @@ public class MovementDetailConfiguration : BaseEntityConfiguration<MovementDetai
         builder.HasOne(x => x.Movement)
             .WithMany(x => x.MovementDetails)
             .HasForeignKey(x => x.MovementId);
+        
+        builder.HasOne(x => x.Product)
+            .WithMany(x => x.MovementDetails)
+            .HasForeignKey(x => x.ProductId);
     }
 }

@@ -33,6 +33,8 @@ public class Product : IIdentifier
 
     // Navigation
     public virtual ICollection<PurchaseDetail>? PurchaseDetails { get; set; } = [];
+    public virtual ICollection<SaleDetail>? SaleDetails { get; set; } = [];
+    public virtual ICollection<MovementDetail>? MovementDetails { get; set; } = [];
 
     // Methods
     public static Product Create(string name, string batchNumber)

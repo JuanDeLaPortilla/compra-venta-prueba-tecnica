@@ -24,6 +24,7 @@ public class MovementDetail : IIdentifier
 
     // Navigation
     public virtual Movement? Movement { get; set; }
+    public virtual Product? Product { get; set; }
 
     // Methods
     public static MovementDetail Create(int productId, int quantity)

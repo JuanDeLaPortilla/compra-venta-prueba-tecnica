@@ -2,4 +2,4 @@
 
 namespace CompraVenta.Persistence.Configurations;
 
-public class PurchaseConfiguration : BaseEntityConfiguration<Purchase>;
+public class SaleConfiguration : BaseEntityConfiguration<Sale>;

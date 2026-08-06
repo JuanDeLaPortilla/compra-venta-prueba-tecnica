@@ -28,6 +28,13 @@ public class Movement : IIdentifier
     [Column("Id_DocumentoOrigen")]
     public int OriginDocumentId { get; set; }
 
+    // Not Mapped
+    [NotMapped]
+    public string MovementTypeName =>
+        MovementTypeEnum == MovementType.InBound
+            ? "Entrada"
+            : "Salida";
+    
     // Navigation
     public virtual ICollection<MovementDetail> MovementDetails { get; set; } = [];
 

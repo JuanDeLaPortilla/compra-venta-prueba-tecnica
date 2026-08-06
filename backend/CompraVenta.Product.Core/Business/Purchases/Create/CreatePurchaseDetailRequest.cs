@@ -10,7 +10,7 @@ namespace CompraVenta.Commerce.Core.Business.Purchases.Create
         [JsonPropertyName("quantity")]
         public int Quantity { get; set; }
 
-        [JsonPropertyName("price")]
-        public decimal Price { get; set; }
+        [JsonPropertyName("unitPrice")]
+        public decimal UnitPrice { get; set; }
     }
 }

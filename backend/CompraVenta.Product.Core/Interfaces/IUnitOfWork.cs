@@ -4,6 +4,8 @@ public interface IUnitOfWork : IDisposable
 {
     public IProductRepository Products { get; }
     public IPurchaseRepository Purchases { get; }
+    public IMovementRepository Movements { get; }
+    public ISaleRepository Sales { get; }
     
     Task ReloadAsync(object entity);
     Task AddAsync(object entity);

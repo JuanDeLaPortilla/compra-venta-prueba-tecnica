@@ -23,6 +23,10 @@ public class CompraVentaDbContext : DbContext
     // PURCHASES
     public DbSet<Purchase> Purchases => Set<Purchase>();
     public DbSet<PurchaseDetail> PurchaseDetails => Set<PurchaseDetail>();
+    
+    // SALES
+    public DbSet<Sale> Sales => Set<Sale>();
+    public DbSet<SaleDetail> SaleDetails => Set<SaleDetail>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -8,50 +8,32 @@ namespace CompraVenta.Commerce.Core.Business.Purchases.Create
 {
     public class CreatePurchaseFacade(IUnitOfWork unitOfWork, CreatePurchaseRequest request)
     {
+        private List<Product> _products = [];
+        
         public async Task<Result> ExecuteAsync()
         {
-            var result = ValidateRequest();
+            var result = await ValidateRequestAsync();
 
             if (result.Code != ResultCode.Success)
             {
                 return result;
             }
 
-            // Obtener productos
-            var productsIds = request.Details
-                .Select(d => d.ProductId)
-                .Distinct()
-                .ToList();
-
-            var products = (await unitOfWork.Products
-                .GetAllAsync(x => productsIds.Contains(x.Id)))
-                .ToList();
-            
-            // Validar productos
-            if (products.Count != productsIds.Count)
-            {
-                return new Result
-                {
-                    Code = ResultCode.BadRequest,
-                    Message = "Uno o más productos no existen."
-                };
-            }
-
             // Crear compra
-            var productsDictionary = products.ToDictionary(x => x.Id);
+            var productsDictionary = _products.ToDictionary(x => x.Id);
 
             var purchaseItems = request.Details
                 .Select(x => new PurchaseItem
                 {
                     ProductId = x.ProductId,
                     Quantity = x.Quantity,
-                    UnitPrice = x.Price
+                    UnitPrice = x.UnitPrice
                 })
                 .ToList();
 
             var purchase = Purchase.Create(purchaseItems, productsDictionary);
 
-            // Crear movimiento
+            // Registrar el movimiento
             var movementItems = request.Details
                 .Select(x => new MovementItem
                 {
@@ -78,7 +60,7 @@ namespace CompraVenta.Commerce.Core.Business.Purchases.Create
             };
         }
 
-        private Result ValidateRequest()
+        private async Task<Result> ValidateRequestAsync()
         {
             if (request.Details.Count == 0)
             {
@@ -86,6 +68,26 @@ namespace CompraVenta.Commerce.Core.Business.Purchases.Create
                 {
                     Code = ResultCode.BadRequest,
                     Message = "Purchase must contain at least one product."
+                };
+            }
+            
+            // Obtener productos
+            var productsIds = request.Details
+                .Select(d => d.ProductId)
+                .Distinct()
+                .ToList();
+
+            _products = (await unitOfWork.Products
+                    .GetAllAsync(x => productsIds.Contains(x.Id)))
+                .ToList();
+            
+            // Validar productos
+            if (_products.Count != productsIds.Count)
+            {
+                return new Result
+                {
+                    Code = ResultCode.BadRequest,
+                    Message = "Uno o más productos no existen."
                 };
             }
 
