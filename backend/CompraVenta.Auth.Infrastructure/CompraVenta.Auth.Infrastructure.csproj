@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CompraVenta.Auth.Core\CompraVenta.Auth.Core.csproj" />
+      <ProjectReference Include="..\CompraVenta.Persistence\CompraVenta.Persistence.csproj" />
+    </ItemGroup>
+
+</Project>
