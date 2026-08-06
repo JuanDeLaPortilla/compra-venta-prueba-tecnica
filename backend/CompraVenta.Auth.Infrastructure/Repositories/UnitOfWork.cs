@@ -1,11 +1,12 @@
-﻿using CompraVenta.Auth.Infrastructure.Repositories.UserRepository;
+﻿using CompraVenta.Auth.Infrastructure.Repositories.Users;
 using CompraVenta.Persistence.Context;
+
 
 namespace CompraVenta.Auth.Infrastructure.Repositories;
 
 public class UnitOfWork(CompraVentaDbContext db) : IUnitOfWork
 {
-    public IUserRepository Users { get; } = new UserRepository.UserRepository(db);
+    public IUserRepository Users { get; } = new UserRepository(db);
     
     public void Dispose() => db.Dispose();
     

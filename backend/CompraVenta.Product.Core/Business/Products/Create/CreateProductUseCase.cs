@@ -1,45 +1,45 @@
 ﻿using CompraVenta.Domain.Common;
 using CompraVenta.Domain.Entities;
-using CompraVenta.Util.PasswordManager;
 using static CompraVenta.Domain.Common.Result;
 
-namespace CompraVenta.Auth.Core.Business.Auth.Login;
+namespace CompraVenta.Commerce.Core.Business.Products.Create;
 
-public class LoginUseCase(User? user, LoginRequest request)
+public class CreateProductUseCase(CreateProductRequest request)
 {
+    public Product Product { get; set; } = new();
+
     public Result Execute()
     {
         var result = ValidateRequest();
 
         if (result.Code != ResultCode.Success) return result;
 
+        Product = Product.Create(request.Name, request.BatchNumber);
+
         return new Result
         {
             Code = ResultCode.Success,
-            Message = "Inicio de sesión exitoso."
+            Message = "Producto creado correctamente."
         };
     }
 
     private Result ValidateRequest()
     {
-        if (string.IsNullOrWhiteSpace(request.Username) 
-            || string.IsNullOrWhiteSpace(request.Password) || user == null)
+        if (string.IsNullOrWhiteSpace(request.Name))
         {
             return new Result
             {
                 Code = ResultCode.BadRequest,
-                Message = "Usuario o contraseña incorrectos."
+                Message = "El nombre es obligatorio."
             };
         }
 
-        var encryptedPassword = PasswordManager.EncodePassword(request.Password);
-        
-        if (!user.PasswordHash.Equals(encryptedPassword, StringComparison.CurrentCultureIgnoreCase))
+        if (string.IsNullOrWhiteSpace(request.BatchNumber))
         {
             return new Result
             {
                 Code = ResultCode.BadRequest,
-                Message = "Correo o contraseña incorrectos."
+                Message = "El número de lote es obligatorio."
             };
         }
 

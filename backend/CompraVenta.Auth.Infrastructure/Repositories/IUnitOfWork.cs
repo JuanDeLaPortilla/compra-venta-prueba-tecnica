@@ -1,4 +1,4 @@
-﻿using CompraVenta.Auth.Infrastructure.Repositories.UserRepository;
+﻿using CompraVenta.Auth.Infrastructure.Repositories.Users;
 
 namespace CompraVenta.Auth.Infrastructure.Repositories;
 

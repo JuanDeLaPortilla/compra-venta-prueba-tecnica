@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11709.299 stable
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6344F9AA-7010-4976-AAA7-2E00BF120458}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{22C5FEB1-0189-4D08-B8D5-C2FC956B0039}"
@@ -28,13 +31,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Gateway", "Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Security", "CompraVenta.Security\CompraVenta.Security.csproj", "{6A5C776D-CC99-401D-AE0E-EB61B231B04A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProductService", "ProductService", "{17DF8AB3-0F02-4A55-A58B-31FDC43DC4B7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommerceService", "CommerceService", "{17DF8AB3-0F02-4A55-A58B-31FDC43DC4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Product.Core", "CompraVenta.Product.Core\CompraVenta.Product.Core.csproj", "{21E39EC4-8C22-404D-A68E-7126FF85FE74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Commerce.Core", "CompraVenta.Product.Core\CompraVenta.Commerce.Core.csproj", "{21E39EC4-8C22-404D-A68E-7126FF85FE74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Product.Infrastructure", "CompraVenta.Product.Infrastructure\CompraVenta.Product.Infrastructure.csproj", "{C6B057D6-2080-4693-8DA0-06F6F6784BD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Commerce.Infrastructure", "CompraVenta.Product.Infrastructure\CompraVenta.Commerce.Infrastructure.csproj", "{C6B057D6-2080-4693-8DA0-06F6F6784BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Product.API", "CompraVenta.Product.API\CompraVenta.Product.API.csproj", "{BB711319-8D8F-40B1-AF5F-517B4D134B55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompraVenta.Commerce.API", "CompraVenta.Product.API\CompraVenta.Commerce.API.csproj", "{BB711319-8D8F-40B1-AF5F-517B4D134B55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +90,9 @@ Global
 		{BB711319-8D8F-40B1-AF5F-517B4D134B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB711319-8D8F-40B1-AF5F-517B4D134B55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{22C5FEB1-0189-4D08-B8D5-C2FC956B0039} = {6344F9AA-7010-4976-AAA7-2E00BF120458}
 		{3D11D8C7-6780-4F6A-8F94-2380545D7DC8} = {6344F9AA-7010-4976-AAA7-2E00BF120458}
@@ -104,5 +110,8 @@ Global
 		{21E39EC4-8C22-404D-A68E-7126FF85FE74} = {17DF8AB3-0F02-4A55-A58B-31FDC43DC4B7}
 		{C6B057D6-2080-4693-8DA0-06F6F6784BD8} = {17DF8AB3-0F02-4A55-A58B-31FDC43DC4B7}
 		{BB711319-8D8F-40B1-AF5F-517B4D134B55} = {17DF8AB3-0F02-4A55-A58B-31FDC43DC4B7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E970C58-9C5B-4488-9B42-E8F131C4177E}
 	EndGlobalSection
 EndGlobal

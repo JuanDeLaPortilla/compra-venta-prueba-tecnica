@@ -1,6 +1,6 @@
 ﻿namespace CompraVenta.Domain.Constants;
 
-public class PersistenceConstants
+public static class PersistenceConstants
 {
     public const string DefaultConnectionKey = "DefaultConnection";
 

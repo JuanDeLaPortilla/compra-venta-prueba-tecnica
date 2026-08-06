@@ -28,8 +28,8 @@ public class AuthController(IUnitOfWork unitOfWork, IJwtTokenService jwtTokenSer
 
         var token = jwtTokenService.CreateToken(user!);
         
-        result.Token = token;
+        var loginReponse = new LoginResponse(result.Code, result.Message, token);
         
-        return ResultResponse(result);
+        return ResultResponse(loginReponse);
     }
 }

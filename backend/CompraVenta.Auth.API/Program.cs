@@ -37,7 +37,7 @@ app.UseSwagger(options =>
     options.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
     {
         // Re-write the server paths so the gateway can route them correctly
-        swaggerDoc.Servers = new List<OpenApiServer> { new() { Url = "/" } };
+        swaggerDoc.Servers = [new() { Url = "/" }];
     });
 });
 app.UseSwaggerUI(options =>

@@ -1,44 +1,63 @@
+using CompraVenta.Commerce.Infrastructure;
+using CompraVenta.Persistence;
+using CompraVenta.Security.Extensions;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.LowercaseUrls = true;
+});
+
+builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc(
+        "v1",
+        new OpenApiInfo
+        {
+            Title = "Products API",
+            Version = "v1",
+        });
+});
+
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    options.RouteTemplate = "swagger/{documentName}/swagger.json";
+
+    // This tells Swagger that when served, all route paths must be prefixed for the gateway
+    options.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+    {
+        // Re-write the server paths so the gateway can route them correctly
+        swaggerDoc.Servers = [new() { Url = "/" }];
+    });
+});
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint(
+        "/swagger/v1/swagger.json",
+        "Commerce API v1");
+});
+
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseRouting();
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast")
-    .WithOpenApi();
+app.UseGatewayValidation();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
+
+await app.MigrateDatabaseAsync();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

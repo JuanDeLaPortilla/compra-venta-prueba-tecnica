@@ -2,7 +2,7 @@
 using CompraVenta.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace CompraVenta.Auth.Infrastructure.Repositories.UserRepository;
+namespace CompraVenta.Auth.Infrastructure.Repositories.Users;
 
 public class UserRepository(CompraVentaDbContext db) : IUserRepository
 {

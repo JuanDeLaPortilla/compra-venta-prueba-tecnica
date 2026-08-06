@@ -13,6 +13,17 @@ public class CompraVentaDbContext : DbContext
     // AUTH
     public DbSet<User> Users => Set<User>();
 
+    // PRODUCTS
+    public DbSet<Product> Products => Set<Product>();
+
+    // MOVEMENTS
+    public DbSet<Movement> Movements => Set<Movement>();
+    public DbSet<MovementDetail> MovementDetails => Set<MovementDetail>();
+
+    // PURCHASES
+    public DbSet<Purchase> Purchases => Set<Purchase>();
+    public DbSet<PurchaseDetail> PurchaseDetails => Set<PurchaseDetail>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
