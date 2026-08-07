@@ -16,6 +16,6 @@ public class PurchaseResponse
     [JsonPropertyName("taxAmount")]
     public decimal TaxAmount { get; set; }
     
-    [JsonPropertyName("total")]
+    [JsonPropertyName("totalAmount")]
     public decimal TotalAmount { get; set; }
 }

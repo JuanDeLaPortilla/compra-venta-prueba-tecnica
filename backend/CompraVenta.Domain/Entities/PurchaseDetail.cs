@@ -47,7 +47,7 @@ public class PurchaseDetail : IIdentifier
     public static PurchaseDetail Create(Product product, int quantity, decimal unitPrice)
     {
         var subTotal = quantity * unitPrice;
-        var taxAmount = subTotal * CommerceConstants.TaxRate / 100m;
+        var taxAmount = subTotal * CommerceConstants.TaxRate;
         var totalAmount = subTotal + taxAmount;
 
         return new PurchaseDetail

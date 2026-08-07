@@ -6,5 +6,5 @@ namespace CompraVenta.Commerce.Core.Business.Kardex.ListProductMovements;
 public class ListProductMovementsResponse(List<ProductMovementResponse> data) : Result
 {
     [JsonPropertyName("data")]
-    public List<ProductMovementResponse> Data = data;
+    public List<ProductMovementResponse> Data { get; set; } = data;
 }

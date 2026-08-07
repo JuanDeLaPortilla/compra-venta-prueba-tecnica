@@ -27,8 +27,8 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         // Definir los claims del usuario en el token
         var claims = new List<Claim>
         {
-            new(ClaimTypes.NameIdentifier, user.Id.ToString(), ClaimValueTypes.Integer32),
-            new(ClaimTypes.Name, user.Username),
+            new("userId", user.Id.ToString(), ClaimValueTypes.Integer32),
+            new("username", user.Username),
         };
 
         // Crear la clave de seguridad a partir del token secreto

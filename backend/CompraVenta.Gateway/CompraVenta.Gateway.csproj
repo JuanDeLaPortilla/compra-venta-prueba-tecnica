@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\CompraVenta.Domain\CompraVenta.Domain.csproj" />
+      <ProjectReference Include="..\CompraVenta.Security\CompraVenta.Security.csproj" />
     </ItemGroup>
 
 </Project>

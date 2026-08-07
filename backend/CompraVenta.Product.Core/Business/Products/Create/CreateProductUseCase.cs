@@ -16,11 +16,13 @@ public class CreateProductUseCase(CreateProductRequest request)
 
         Product = Product.Create(request.Name, request.BatchNumber);
 
-        return new Result
+        result = new Result
         {
             Code = ResultCode.Success,
             Message = "Producto creado correctamente."
         };
+        
+        return new CreateProductResponse(result, Product);
     }
 
     private Result ValidateRequest()

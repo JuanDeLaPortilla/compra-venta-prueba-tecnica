@@ -24,6 +24,11 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+builder.Services
+    .AddJwtAuthentication(builder.Configuration);
+
+builder.Services.AddAuthorization();
+
 builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddApiRateLimiter();

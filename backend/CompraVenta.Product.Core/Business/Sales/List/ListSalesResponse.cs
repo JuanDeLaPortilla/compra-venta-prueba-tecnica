@@ -6,5 +6,5 @@ namespace CompraVenta.Commerce.Core.Business.Sales.List;
 public class ListSalesResponse(List<SaleResponse> data) : Result
 {
     [JsonPropertyName("data")]
-    public List<SaleResponse> Data = data;
+    public List<SaleResponse> Data { get; set; } = data;
 }

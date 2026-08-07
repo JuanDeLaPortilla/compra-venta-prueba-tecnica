@@ -1,11 +1,13 @@
 ﻿using System.Text;
 using CompraVenta.Domain.Constants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace CompraVenta.ApiGateway.Authentication;
+namespace CompraVenta.Security.Extensions;
 
-public static class JwtConfiguration
+public static class JwtAuthenticationExtensions
 {
     public static IServiceCollection AddJwtAuthentication(
         this IServiceCollection services,
@@ -44,5 +46,4 @@ public static class JwtConfiguration
 
         return services;
     }
-
 }

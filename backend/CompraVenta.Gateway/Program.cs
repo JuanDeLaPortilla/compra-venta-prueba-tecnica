@@ -1,6 +1,6 @@
-using CompraVenta.ApiGateway.Authentication;
 using CompraVenta.ApiGateway.Extensions;
 using CompraVenta.Domain.Constants;
+using CompraVenta.Security.Extensions;
 using Microsoft.OpenApi.Models;
 using Yarp.ReverseProxy.Transforms;
 
@@ -73,6 +73,10 @@ app.UseSwaggerUI(options =>
     options.SwaggerEndpoint(
         "/swagger/auth/v1/swagger.json",
         "Auth Service");
+    
+    options.SwaggerEndpoint(
+        "/swagger/commerce/v1/swagger.json",
+        "Commerce Service");
 });
 
 app.UseHttpsRedirection();
