@@ -6,5 +6,6 @@ export const useKardex = () => {
   return useQuery({
     queryKey: kardexKeys.all,
     queryFn: () => kardexService.getProducts(),
+    refetchOnMount: "always",
   });
 };

@@ -7,5 +7,6 @@ export function useProducts() {
   return useQuery({
     queryKey: productKeys.list(),
     queryFn: productService.getAll,
+    refetchOnMount: "always",
   });
 }
