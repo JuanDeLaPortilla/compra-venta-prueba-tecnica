@@ -16,6 +16,7 @@ El frontend está desarrollado con **React + TypeScript** y consume las APIs med
 - [Justificación de Clean Architecture](#justificación-de-clean-architecture)
 - [Arquitectura de Microservicios](#arquitectura-de-microservicios)
 - [API Gateway](#api-gateway)
+- [Documentación de la API](#documentación-de-la-api)
 - [Frontend](#frontend)
 - [Patrones de Diseño](#patrones-de-diseño)
 - [Seguridad](#seguridad)
@@ -327,6 +328,12 @@ Microservice
 ```
 
 Los microservicios también validan el JWT como mecanismo de **defense in depth**, evitando depender exclusivamente del Gateway para la protección de los recursos.
+
+---
+
+# Documentación de la API
+→ Link a la colección de Postman
+https://documenter.getpostman.com/view/26550420/2sBY4VLdDS
 
 ---
 
